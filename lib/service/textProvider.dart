@@ -12,14 +12,14 @@ class KText extends StatelessWidget {
   KText({Key key, this.text, this.size, this.bold}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double devWidth = MediaQuery.of(context).size.width;
-    double devHeight = MediaQuery.of(context).size.height;
+    double devWidth = 1200;
     return Text(
       text,
       style: appData.getMainTextStyle().copyWith(
         fontSize: devWidth > 1200 ? 1200 * size : devWidth * size,
         fontWeight: bold ? FontWeight.bold : FontWeight.normal,
       ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

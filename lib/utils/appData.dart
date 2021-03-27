@@ -13,10 +13,14 @@ class AppData extends ChangeNotifier {
     color: Color(0xFFC8CDE3),
   );
 
-  LinearGradient linearGradientBt = LinearGradient(colors: [
-    Color(0xFFE69707),
-    Color(0xFFFED12E),
-  ]);
+  LinearGradient linearGradientBt = LinearGradient(
+    colors: [
+      Color(0xFFE69707),
+      Color(0xFFFED12E),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 
   List<BoxShadow> getBoxShadow(Color color) {
     return [BoxShadow(

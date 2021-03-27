@@ -5,17 +5,23 @@ import 'package:spreadsheet_decoder/spreadsheet_decoder.dart';
 
 class EventProvider with ChangeNotifier {
   List<Competitor> _competitors = [];
+  List<Competitor> _winners = [];
   int _winnerScale = 3;
   List<Uint8List> _giftImages = [];
-  String _eventTitle = "This is title";
-  String _eventSubTitle = "This is sub title";
+  String _eventTitle = "E9pay Remittance";
+  String _eventSubTitle = "E9pay Overseas Remittance Service";
   String _selectedFile = "File Not Selected!";
+  int _shuffleRounds = 30;
+  int _imageAutoPlayInterval = 2;
 
   String getTitle() => _eventTitle;
   String getSubTitle() => _eventSubTitle;
   List<Competitor> getCompetitors() => _competitors;
   List<Competitor> getWinners(){
-    return _competitors.where((element) => element.isWin());
+    return _winners;
+  }
+  int getCompetitorsSize() {
+    return _competitors.length;
   }
   int getWinnerScale() => _winnerScale;
 
@@ -24,16 +30,35 @@ class EventProvider with ChangeNotifier {
     return _selectedFile;
   }
 
+  int getAutoPlayInterval() {
+    return _imageAutoPlayInterval;
+  }
+
+  int getShuffleRounds() {
+    return _shuffleRounds;
+  }
+
+  void setAutoPlayInterval(int value) {
+    _imageAutoPlayInterval = value;
+    notifyListeners();
+  }
+
+  void setShuffleRounds(int value) {
+    _shuffleRounds = value;
+    notifyListeners();
+  }
+
   void update() {
     notifyListeners();
   }
 
-  void updateWinners(Competitor winner) {
-    _competitors.forEach((element) {
-      if (element.equals(winner)) {
-        element.setWin(winner.isWin());
-      }
-    });
+  void setTempWinners(List<Competitor> temp) {
+    _winners = temp;
+    notifyListeners();
+  }
+
+  void updateWinners(Competitor winner, int index) {
+    _winners[index] = winner;
     notifyListeners();
   }
 

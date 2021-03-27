@@ -11,7 +11,14 @@ class Competitor {
 
   String getName() => this._name;
 
-  String getPhone() => this._phoneNumber;
+  String getPhone() {
+    if (this._phoneNumber.length > 4) {
+      String lastDigits = this._phoneNumber.substring(this._phoneNumber.length - 4, this._phoneNumber.length);
+      return "010-****-" + lastDigits;
+    } else {
+      return "010-****-" + this._phoneNumber;
+    }
+  }
 
   bool isWin() => this._win;
 
