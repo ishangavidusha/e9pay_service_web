@@ -23,3 +23,30 @@ class KText extends StatelessWidget {
     );
   }
 }
+
+
+class KFText extends StatelessWidget {
+  final AppData appData = AppData();
+  final String text;
+  final double size;
+  final bool bold;
+  final bool si;
+
+  KFText({Key key, this.text, this.size, this.bold, this.si = false}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    double devWidth = MediaQuery.of(context).size.width;
+    return Text(
+      text,
+      style: si ? appData.getMainTextStyle().copyWith(
+        fontSize: devWidth > 1200 ? 1200 * size : devWidth * size,
+        fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+        fontFamily: "FMBindumathi",
+      ) : appData.getMainTextStyle().copyWith(
+        fontSize: devWidth > 1200 ? 1200 * size : devWidth * size,
+        fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+      ),
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+}

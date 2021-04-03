@@ -1,13 +1,23 @@
+import 'package:e9pay_service/service/dbService.dart';
 import 'package:e9pay_service/service/eventProvider.dart';
+import 'package:e9pay_service/views/gameHomeView.dart';
+import 'package:e9pay_service/views/gameLoginView.dart';
 import 'package:e9pay_service/views/homeView.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => EventProvider(),
-      child: MyApp()
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<EventProvider>(
+          create: (_) => EventProvider(),
+        ),
+        ChangeNotifierProvider<SheetService>(
+          create: (_) => SheetService(),
+        ),
+      ],
+      child: MyApp(),
     ),
   );
 }
@@ -20,7 +30,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeView(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeView(),
+        '/game': (context) => Consumer<SheetService>(
+          builder: (context, sheetService, _) {
+            if (sheetService.isLogin()) {
+              return GameHomeView();
+            } else {
+              return GameLogInView();
+            }
+          }
+        ),
+      },
     );
   }
 }
