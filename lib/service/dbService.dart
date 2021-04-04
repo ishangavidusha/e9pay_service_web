@@ -24,6 +24,7 @@ const _credentials = r'''
 class SheetService with ChangeNotifier {
   GSheets gsheets = GSheets(_credentials);
   String sheetId = kReleaseMode ? "1jN14vQxlXJEhs7WEsH5m3bnpkppJVokVMf3GSeFy3_g" : "1IrN7-R34kgnWUY0uD3OPFvBCb4CvinprrCPzW_eHvU8";
+  String dataSheetId = "1hzcjzUUryHTVklHHd-dn-b85zmEr1qu1ZZbkP8cVPZw";
   Spreadsheet spreadsheet;
   Spreadsheet pdfDataspreadsheet;
   UserData _userData = UserData(
@@ -32,6 +33,8 @@ class SheetService with ChangeNotifier {
     phoneNumber: "",
   );
   bool _loading = false;
+  String _labuUrl = "";
+  String _eleUrl = "";
 
   Future<bool> loginOrRegister(String name, String phoneNumber) async {
 
@@ -95,6 +98,10 @@ class SheetService with ChangeNotifier {
 
         notifyListeners();
       }
+
+      await getAppData();
+
+
       setLoading(false);
       return true;
 
@@ -104,6 +111,14 @@ class SheetService with ChangeNotifier {
       return false;
     }
 
+  }
+
+  String getLabuURL() {
+    return _labuUrl.length > 0 ? _labuUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
+  }
+
+  String getEleURL() {
+    return _eleUrl.length > 0 ? _eleUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
   }
 
   void setLoading(bool value) {
@@ -250,6 +265,24 @@ class SheetService with ChangeNotifier {
       print(e);
       _userData.phoneNumber = null;
       setLoading(false);
+      return false;
+    }
+  }
+
+  Future<bool> getAppData() async {
+    try {
+      spreadsheet = await gsheets.spreadsheet(dataSheetId);
+      Worksheet worksheet = spreadsheet.worksheetByIndex(0);
+      List data = await worksheet.values.allRows();
+
+      if (data.isNotEmpty) {
+        _labuUrl = data[0][1].toString();
+        _eleUrl = data[1][1].toString();
+      }
+      return false;
+
+    } catch (e) {
+      print(e);
       return false;
     }
   }

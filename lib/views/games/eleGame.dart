@@ -166,7 +166,7 @@ class _EleGameViewState extends State<EleGameView> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         width: devWidth,
-                        child: Image.network("https://i.ibb.co/nsWCPQK/elephant.jpg", fit: BoxFit.fitWidth,),
+                        child: Image.network(_sheetService.getEleURL(), fit: BoxFit.fitWidth,),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -323,7 +323,7 @@ class _EleGameViewState extends State<EleGameView> {
                         ),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -375,6 +375,9 @@ class _EleGameViewState extends State<EleGameView> {
                             ),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
                     ],
                   ),
