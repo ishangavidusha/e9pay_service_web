@@ -20,6 +20,13 @@ class _GameHomeViewState extends State<GameHomeView> {
   AppData appData = AppData();
   SheetService _sheetService;
 
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<SheetService>(context, listen: false).getAppData();
+  }
+
   void showAlert(String msg, String title) {
     Alert(
       context: context,

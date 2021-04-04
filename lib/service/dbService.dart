@@ -59,15 +59,15 @@ class SheetService with ChangeNotifier {
         _userData.id = data[found][0].toString();
         _userData.name = data[found][1].toString();
         _userData.phoneNumber = data[found][2].toString();
-        _userData.diceGame = data[found][3] == "false" ? false : true;
-        _userData.diceStatus = data[found][4] == "false" ? false : true;
+        _userData.diceGame = data[found][3] == "FALSE" ? false : true;
+        _userData.diceStatus = data[found][4] == "FALSE" ? false : true;
         _userData.diceValue = int.parse(data[found][5]);
-        _userData.potGame = data[found][6] == "false" ? false : true;
-        _userData.potStatus = data[found][7] == "false" ? false : true;
+        _userData.potGame = data[found][6] == "FALSE" ? false : true;
+        _userData.potStatus = data[found][7] == "FALSE" ? false : true;
         _userData.potValue = int.parse(data[found][8]);
-        _userData.eleGame = data[found][9] == "false" ? false : true;
+        _userData.eleGame = data[found][9] == "FALSE" ? false : true;
         _userData.eleStatus = data[found][10].toString();
-        _userData.labuGame = data[found][11] == "false" ? false : true;
+        _userData.labuGame = data[found][11] == "FALSE" ? false : true;
         _userData.labuStatus = data[found][12].toString();
 
         notifyListeners();
@@ -75,7 +75,7 @@ class SheetService with ChangeNotifier {
 
         String newId = DateTime.now().microsecondsSinceEpoch.toString();
 
-        bool registerResult = await worksheet.values.appendRow([newId, name, phoneNumber, "false", "false", 0, "false", "false", 0, "false", "null", "false", "null"]);
+        bool registerResult = await worksheet.values.appendRow([newId, name, phoneNumber, "FALSE", "FALSE", 0, "FALSE", "FALSE", 0, "FALSE", "null", "FALSE", "null"]);
 
         if (registerResult) {
           _userData.id = newId;
@@ -88,9 +88,9 @@ class SheetService with ChangeNotifier {
           _userData.potStatus = false;
           _userData.potValue = 0;
           _userData.eleGame = false;
-          _userData.eleStatus = "";
+          _userData.eleStatus = "null";
           _userData.labuGame = false;
-          _userData.labuStatus = "";
+          _userData.labuStatus = "null";
         } else {
           return false;
         }
@@ -98,10 +98,6 @@ class SheetService with ChangeNotifier {
 
         notifyListeners();
       }
-
-      bool dataResult = await getAppData();
-
-      print(dataResult);
 
       setLoading(false);
       return true;
@@ -115,11 +111,11 @@ class SheetService with ChangeNotifier {
   }
 
   String getLabuURL() {
-    return _labuUrl.length > 0 ? _labuUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
+    return _labuUrl.isNotEmpty ? _labuUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
   }
 
   String getEleURL() {
-    return _eleUrl.length > 0 ? _eleUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
+    return _eleUrl.isNotEmpty ? _eleUrl : "https://i.ibb.co/z8R5Ryf/Screenshot-2018-12-16-at-21-06-29.png";
   }
 
   void setLoading(bool value) {
@@ -220,6 +216,7 @@ class SheetService with ChangeNotifier {
   Future<bool> updateUser() async {
     try {
       setLoading(true);
+      spreadsheet = null;
       spreadsheet = await gsheets.spreadsheet(sheetId);
       Worksheet worksheet = spreadsheet.worksheetByIndex(0);
       List data = await worksheet.values.allRows();
@@ -239,15 +236,15 @@ class SheetService with ChangeNotifier {
           _userData.id,
           _userData.name,
           _userData.phoneNumber,
-          _userData.diceGame.toString(),
-          _userData.diceStatus.toString(),
+          _userData.diceGame ? "TRUE" : "FALSE",
+          _userData.diceStatus ? "TRUE" : "FALSE",
           _userData.diceValue.toString(),
-          _userData.potGame.toString(),
-          _userData.potStatus.toString(),
+          _userData.potGame ? "TRUE" : "FALSE",
+          _userData.potStatus ? "TRUE" : "FALSE",
           _userData.potValue.toString(),
-          _userData.eleGame.toString(),
+          _userData.eleGame ? "TRUE" : "FALSE",
           _userData.eleStatus,
-          _userData.labuGame.toString(),
+          _userData.labuGame ? "TRUE" : "FALSE",
           _userData.labuStatus,
         ]);
 
@@ -272,6 +269,7 @@ class SheetService with ChangeNotifier {
 
   Future<bool> getAppData() async {
     try {
+      spreadsheet = null;
       spreadsheet = await gsheets.spreadsheet(dataSheetId);
       Worksheet worksheet = spreadsheet.worksheetByIndex(0);
       List data = await worksheet.values.allRows();
@@ -280,7 +278,7 @@ class SheetService with ChangeNotifier {
         _labuUrl = data[0][1].toString();
         _eleUrl = data[1][1].toString();
       }
-      return false;
+      return true;
 
     } catch (e) {
       print(e);
