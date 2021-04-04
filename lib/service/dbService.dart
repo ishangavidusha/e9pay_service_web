@@ -99,8 +99,9 @@ class SheetService with ChangeNotifier {
         notifyListeners();
       }
 
-      await getAppData();
+      bool dataResult = await getAppData();
 
+      print(dataResult);
 
       setLoading(false);
       return true;

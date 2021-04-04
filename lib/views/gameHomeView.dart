@@ -294,7 +294,7 @@ class _GameHomeViewState extends State<GameHomeView> {
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   KFText(
                                     text: "ku( ",
@@ -311,7 +311,7 @@ class _GameHomeViewState extends State<GameHomeView> {
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   KFText(
                                     text: "ÿrl:k wxlh( ",
