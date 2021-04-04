@@ -38,13 +38,13 @@ class _GameLogInViewState extends State<GameLogInView> {
   void checkBrowser() async {
     webBrowserInfo = await deviceInfo.webBrowserInfo;
     print('Running on ${webBrowserInfo.platform}'); 
-    if (webBrowserInfo.platform.contains("iPhone") || webBrowserInfo.platform.contains("Android")) {
+    if (webBrowserInfo.platform.contains("Win32") || webBrowserInfo.platform.contains("Mac") || webBrowserInfo.platform.contains("Linux")) {
       setState(() {
-        mobile = true;
+        mobile = false;
       });
     } else {
       setState(() {
-        mobile = false;
+        mobile = true;
       });
     }
   }
