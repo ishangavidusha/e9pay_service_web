@@ -30,17 +30,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^4.3.3
   google_fonts: ^1.1.2
-  flutter_svg: ^0.21.0-nullsafety.0
   lottie: ^1.0.1
   gradient_widgets: ^0.5.1
-  animated_text_kit: ^4.0.0
-  shared_preferences: ^2.0.3
   file_picker: ^3.0.0
   spreadsheet_decoder: ^2.0.0
   font_awesome_flutter: ^9.0.0
   carousel_slider: ^3.0.0
   gsheets: ^0.2.7
   rflutter_alert: ^2.0.2
+  url_launcher: ^6.0.3
+  device_info_plus: ^1.0.0
 
 dev_dependencies:
   flutter_test:

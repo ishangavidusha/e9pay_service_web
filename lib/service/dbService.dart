@@ -69,13 +69,14 @@ class SheetService with ChangeNotifier {
         _userData.eleStatus = data[found][10].toString();
         _userData.labuGame = data[found][11] == "FALSE" ? false : true;
         _userData.labuStatus = data[found][12].toString();
+        _userData.fbShare = int.parse(data[found][13]);
 
         notifyListeners();
       } else {
 
         String newId = DateTime.now().microsecondsSinceEpoch.toString();
 
-        bool registerResult = await worksheet.values.appendRow([newId, name, phoneNumber, "FALSE", "FALSE", 0, "FALSE", "FALSE", 0, "FALSE", "null", "FALSE", "null"]);
+        bool registerResult = await worksheet.values.appendRow([newId, name, phoneNumber, "FALSE", "FALSE", 0, "FALSE", "FALSE", 0, "FALSE", "null", "FALSE", "null", 0]);
 
         if (registerResult) {
           _userData.id = newId;
@@ -91,6 +92,7 @@ class SheetService with ChangeNotifier {
           _userData.eleStatus = "null";
           _userData.labuGame = false;
           _userData.labuStatus = "null";
+          _userData.fbShare = 0;
         } else {
           return false;
         }
@@ -143,12 +145,24 @@ class SheetService with ChangeNotifier {
     }
   }
 
+  int getFBShare() {
+    return _userData.fbShare;
+  }
+
+  Future<bool> setFBShare(int value) async {
+    _userData.fbShare = value;
+    bool result = await updateUser();
+    notifyListeners();
+    return result;
+  }
+
   bool isDicePlayed() {
     return _userData.diceGame;
   }
 
   bool isDiceWin() {
     return _userData.diceStatus;
+    
   }
 
   Future<bool> setDiceValue(int value) async {
@@ -246,6 +260,7 @@ class SheetService with ChangeNotifier {
           _userData.eleStatus,
           _userData.labuGame ? "TRUE" : "FALSE",
           _userData.labuStatus,
+          _userData.fbShare.toString()
         ]);
 
         if (!result) {

@@ -1,3 +1,4 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:e9pay_service/service/dbService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,10 +18,13 @@ class GameLogInView extends StatefulWidget {
 class _GameLogInViewState extends State<GameLogInView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  WebBrowserInfo webBrowserInfo;
   SheetService _sheetService;
   AppData appData = AppData();
   bool isBackPressed = false;
   String errorMsg = "";
+  bool mobile = true;
 
   @override
   void initState() { 
@@ -28,6 +32,21 @@ class _GameLogInViewState extends State<GameLogInView> {
     nameController.text = "";
     phoneController.text = "";
     phoneController.addListener(_phoneListener);
+    checkBrowser();
+  }
+
+  void checkBrowser() async {
+    webBrowserInfo = await deviceInfo.webBrowserInfo;
+    print('Running on ${webBrowserInfo.platform}'); 
+    if (webBrowserInfo.platform.contains("iPhone") || webBrowserInfo.platform.contains("Android")) {
+      setState(() {
+        mobile = true;
+      });
+    } else {
+      setState(() {
+        mobile = false;
+      });
+    }
   }
 
   @override
@@ -124,7 +143,7 @@ class _GameLogInViewState extends State<GameLogInView> {
     double devWidth = MediaQuery.of(context).size.width;
     double devHeight = MediaQuery.of(context).size.height;
     _sheetService = Provider.of<SheetService>(context);
-    return Scaffold(
+    return mobile ? Scaffold(
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -444,6 +463,60 @@ class _GameLogInViewState extends State<GameLogInView> {
                     ),
                   ),
                 ) : Container(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ) : Scaffold(
+      backgroundColor: appData.mainBgColor,
+      body: Container(
+        width: devWidth,
+        height: devHeight,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              KFText(
+                text: "fuu fjímsgqj cx.u ÿrl:k i|yd mukla iyh olajhs'",
+                bold: true,
+                size: 0.04,
+                si: true,
+                textAlign: TextAlign.center,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                      ),
+                      child: Image.asset("assets/slLogo.png", fit: BoxFit.contain, scale: 6,)
+                    ),
+                    KFText(
+                      text: "E9pay Remittance Sri Lanka",
+                      bold: true,
+                      size: 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(FontAwesomeIcons.phoneSquare, color: appData.mainTextColor, size: devWidth * 0.03,),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        KFText(
+                          text: "1899-6943",
+                          bold: true,
+                          size: 0.03,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

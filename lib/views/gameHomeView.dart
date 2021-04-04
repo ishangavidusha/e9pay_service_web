@@ -1,12 +1,15 @@
 import 'package:e9pay_service/service/dbService.dart';
+import 'package:e9pay_service/views/games/diceGame.dart';
 import 'package:e9pay_service/views/games/eleGame.dart';
 import 'package:e9pay_service/views/games/labuGame.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../service/textProvider.dart';
 import '../utils/appData.dart';
@@ -172,7 +175,14 @@ class _GameHomeViewState extends State<GameHomeView> {
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
                             onTap: () {
-                              //TODO: GO TO GAME
+                              if (kReleaseMode) {
+                                showAlert("fuu ;rÕh wfma%,a 12 fjks Èk isg wdrïn fõ'", "oekqï§uhs");
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => DiceGameView()),
+                                );
+                              }
                             },
                           ),
                         ),
@@ -201,7 +211,14 @@ class _GameHomeViewState extends State<GameHomeView> {
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
                             onTap: () {
-                              //TODO: GO TO GAME
+                              if (kReleaseMode) {
+                                showAlert("fuu ;rÕh wfma%,a 12 fjks Èk isg wdrïn fõ'", "oekqï§uhs");
+                              } else {
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(builder: (context) => DiceGameView()),
+                                // );
+                              }
                             },
                           ),
                         ),
@@ -271,6 +288,147 @@ class _GameHomeViewState extends State<GameHomeView> {
                         ),
                         SizedBox(
                           height: 20,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            gradient: appData.linearGradientBt,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  KFText(
+                                    text: ";rÕh wdrïN lsÍug fmr my; fnd;a;u ;o lr",
+                                    bold: true,
+                                    size: 0.03,
+                                    si: true,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      KFText(
+                                        text: "wmf.a ks,",
+                                        bold: true,
+                                        size: 0.03,
+                                        si: true,
+                                      ),
+                                      KFText(
+                                        text: " Facebook ",
+                                        bold: true,
+                                        size: 0.03,
+                                      ),
+                                      KFText(
+                                        text: "msgfjys we;s",
+                                        bold: true,
+                                        size: 0.03,
+                                        si: true,
+                                      ),
+                                    ],
+                                  ),
+                                  KFText(
+                                    text: "wjqreÿ l%Svd fmdiaÜ tl",
+                                    bold: true,
+                                    size: 0.03,
+                                    si: true,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      KFText(
+                                        text: "Share ",
+                                        bold: true,
+                                        size: 0.03,
+                                      ),
+                                      KFText(
+                                        text: "lrkak'",
+                                        bold: true,
+                                        size: 0.03,
+                                        si: true,
+                                      ),
+                                    ],
+                                  ),
+                                  
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: appData.linearGradientBt,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(30),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                  ),
+                                  boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                                ),
+                                child: Material(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(30),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                  ),
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      // String fbProtocolUrl = "fb://page/E9pay.lk";
+                                      String fallbackUrl = "https://www.facebook.com/E9pay.lk";
+                                      if (await canLaunch(fallbackUrl)) {
+                                        await _sheetService.setFBShare(_sheetService.getFBShare() + 1);
+                                        await launch(fallbackUrl);
+                                      } else {
+                                        showAlert("ndú;fha .eg¿jla we;s úh'", "oekqï§uhs");
+                                      }
+                                    },
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(30),
+                                      bottomRight: Radius.circular(30),
+                                      topLeft: Radius.circular(30),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                child: FaIcon(FontAwesomeIcons.facebook, color: appData.mainTextColor, size: devWidth * 0.06,),
+                                              ),
+                                              KFText(
+                                                text: "Share ",
+                                                bold: true,
+                                                size: 0.05,
+                                              ),
+                                              KFText(
+                                                text: "lrkak",
+                                                bold: true,
+                                                size: 0.05,
+                                                si: true,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),

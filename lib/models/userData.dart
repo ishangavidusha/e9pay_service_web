@@ -12,6 +12,7 @@ class UserData {
   String eleStatus;
   bool labuGame;
   String labuStatus;
+  int fbShare;
 
   UserData({
     this.id,
