@@ -2,6 +2,7 @@ import 'package:e9pay_service/service/dbService.dart';
 import 'package:e9pay_service/service/eventProvider.dart';
 import 'package:e9pay_service/views/gameHomeView.dart';
 import 'package:e9pay_service/views/gameLoginView.dart';
+import 'package:e9pay_service/views/games/labuGame.dart';
 import 'package:e9pay_service/views/homeView.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

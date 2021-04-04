@@ -1,11 +1,12 @@
 import 'package:e9pay_service/service/dbService.dart';
+import 'package:e9pay_service/views/games/labuGame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../service/textProvider.dart';
 import '../service/textProvider.dart';
 import '../utils/appData.dart';
 
@@ -17,6 +18,53 @@ class GameHomeView extends StatefulWidget {
 class _GameHomeViewState extends State<GameHomeView> {
   AppData appData = AppData();
   SheetService _sheetService;
+
+  void showAlert(String msg, String title) {
+    Alert(
+      context: context,
+      style: AlertStyle(
+        animationType: AnimationType.fromBottom,
+        isCloseButton: false,
+        isOverlayTapDismiss: true,
+        descStyle: appData.getMainTextStyle().copyWith(
+          fontWeight: FontWeight.normal,
+          fontFamily: "FMBindumathi",
+        ),
+        animationDuration: Duration(milliseconds: 300),
+        alertBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(
+            color: Colors.grey,
+          ),
+        ),
+        titleStyle: appData.getMainTextStyle().copyWith(
+          fontWeight: FontWeight.bold,
+          fontFamily: "FMBindumathi",
+        ),
+        constraints: BoxConstraints.expand(width: 300),
+        //First to chars "55" represents transparency of color
+        overlayColor: Color(0x55000000),
+        alertElevation: 0,
+        alertAlignment: Alignment.center,
+      ),
+      type: AlertType.info,
+      title: title,
+      desc: msg,
+      buttons: [
+        DialogButton(
+          child: KFText(
+            text: "yß",
+            bold: true,
+            size: 0.04,
+            si: true,
+          ),
+          onPressed: () => Navigator.pop(context),
+          color: appData.mainBgColor,
+          radius: BorderRadius.circular(20),
+        ),
+      ],
+    ).show();
+  }
 
   
   @override
@@ -115,6 +163,9 @@ class _GameHomeViewState extends State<GameHomeView> {
                             ),
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
+                            onTap: () {
+                              //TODO: GO TO GAME
+                            },
                           ),
                         ),
                         Container(
@@ -141,6 +192,9 @@ class _GameHomeViewState extends State<GameHomeView> {
                             ),
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
+                            onTap: () {
+                              //TODO: GO TO GAME
+                            },
                           ),
                         ),
                         Container(
@@ -167,6 +221,9 @@ class _GameHomeViewState extends State<GameHomeView> {
                             ),
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
+                            onTap: () {
+                              //TODO: GO TO GAME
+                            },
                           ),
                         ),
                         Container(
@@ -193,6 +250,12 @@ class _GameHomeViewState extends State<GameHomeView> {
                             ),
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => LabuGameView()),
+                              );
+                            },
                           ),
                         ),
                         SizedBox(

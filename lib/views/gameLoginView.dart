@@ -50,7 +50,7 @@ class _GameLogInViewState extends State<GameLogInView> {
   }
 
   bool phoneValidate() {
-    if (phoneController.text != null && phoneController.text.length == 13) {
+    if (phoneController.text != null && phoneController.text.length == 11) {
       return true;
     } else {
       setState(() {
@@ -62,16 +62,9 @@ class _GameLogInViewState extends State<GameLogInView> {
 
   _phoneListener() {
     if (!isBackPressed) {
-      if (phoneController.text.length == 3 || phoneController.text.length == 8) {
+      if (phoneController.text.length > 11) {
         phoneController.value = TextEditingValue(
-          text: phoneController.text + "-",
-          selection: TextSelection.collapsed(offset: phoneController.text.length + 1),
-        );
-      }
-
-      if (phoneController.text.length > 13) {
-        phoneController.value = TextEditingValue(
-          text: phoneController.text.substring(0, 13),
+          text: phoneController.text.substring(0, 11),
           selection: TextSelection.collapsed(offset: phoneController.text.length),
         );
       }

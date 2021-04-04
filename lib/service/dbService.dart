@@ -2,6 +2,7 @@
 
 // google auth credentials
 import 'package:e9pay_service/models/userData.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gsheets/gsheets.dart';
 
@@ -22,7 +23,7 @@ const _credentials = r'''
 
 class SheetService with ChangeNotifier {
   GSheets gsheets = GSheets(_credentials);
-  String sheetId = "1jN14vQxlXJEhs7WEsH5m3bnpkppJVokVMf3GSeFy3_g";
+  String sheetId = kReleaseMode ? "1jN14vQxlXJEhs7WEsH5m3bnpkppJVokVMf3GSeFy3_g" : "1IrN7-R34kgnWUY0uD3OPFvBCb4CvinprrCPzW_eHvU8";
   Spreadsheet spreadsheet;
   Spreadsheet pdfDataspreadsheet;
   UserData _userData = UserData(
@@ -175,8 +176,17 @@ class SheetService with ChangeNotifier {
     return _userData.labuGame;
   }
 
+  List<String> getLabuValue() {
+    String value = _userData.labuStatus.replaceAll("[", "").replaceAll("]", "");
+    if (value.split(",").length == 3) {
+      return value.split(",");
+    }
+    return null;
+  }
+
   Future<bool> setLabuValue(String value) async {
     _userData.labuStatus = value;
+    _userData.labuGame = true;
     bool result = await updateUser();
     notifyListeners();
     return result;
@@ -200,7 +210,10 @@ class SheetService with ChangeNotifier {
 
       if (found != -1) {
 
-        bool result = await worksheet.values.insertRow(found + 1, [
+        print(found);
+        print(data.length);
+
+        bool result = await worksheet.values.insertRow(found + 2, [
           _userData.id,
           _userData.name,
           _userData.phoneNumber,
@@ -216,6 +229,10 @@ class SheetService with ChangeNotifier {
           _userData.labuStatus,
         ]);
 
+        if (!result) {
+          _userData.phoneNumber = null;
+        }
+
         setLoading(false);
         return result;
 
@@ -225,6 +242,7 @@ class SheetService with ChangeNotifier {
       }
     } catch (e) {
       print(e);
+      _userData.phoneNumber = null;
       setLoading(false);
       return false;
     }
