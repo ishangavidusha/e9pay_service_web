@@ -7,12 +7,12 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class LabuGameView extends StatefulWidget {
+class EleGameView extends StatefulWidget {
   @override
-  _LabuGameViewState createState() => _LabuGameViewState();
+  _EleGameViewState createState() => _EleGameViewState();
 }
 
-class _LabuGameViewState extends State<LabuGameView> {
+class _EleGameViewState extends State<EleGameView> {
   TextEditingController oneController = TextEditingController();
   TextEditingController twoController = TextEditingController();
   TextEditingController threeController = TextEditingController();
@@ -28,8 +28,8 @@ class _LabuGameViewState extends State<LabuGameView> {
     oneController.text = "";
     twoController.text = "";
     threeController.text = "";
-    if (Provider.of<SheetService>(context, listen: false).isLabuPlayed()) {
-      List<String> values = Provider.of<SheetService>(context, listen: false).getLabuValue();
+    if (Provider.of<SheetService>(context, listen: false).isElePlayed()) {
+      List<String> values = Provider.of<SheetService>(context, listen: false).getEleValue();
       if (values != null) {
         oneController.text = values[0];
         twoController.text = values[1];
@@ -156,7 +156,7 @@ class _LabuGameViewState extends State<LabuGameView> {
                           bottom: 10,
                         ),
                         child: KFText(
-                          text: ".ia,nq f.äfha weg .kka lsÍu",
+                          text: "w,shg wei ;eîu",
                           bold: true,
                           size: 0.04,
                           si: true,
@@ -166,7 +166,7 @@ class _LabuGameViewState extends State<LabuGameView> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         width: devWidth,
-                        child: Image.network("https://i.ibb.co/qNTH40Z/labu.jpg", fit: BoxFit.fitWidth,),
+                        child: Image.network("https://i.ibb.co/nsWCPQK/elephant.jpg", fit: BoxFit.fitWidth,),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -209,7 +209,7 @@ class _LabuGameViewState extends State<LabuGameView> {
                             controller: oneController,
                             cursorColor: appData.mainTextColor,
                             keyboardType: TextInputType.number,
-                            enabled: _sheetService != null ? !_sheetService.isLabuPlayed() : false,
+                            enabled: _sheetService != null ? !_sheetService.isElePlayed() : false,
                             decoration: InputDecoration(
                               labelText: "Answer One",
                               labelStyle: appData.getMainTextStyle(),
@@ -253,7 +253,7 @@ class _LabuGameViewState extends State<LabuGameView> {
                             controller: twoController,
                             cursorColor: appData.mainTextColor,
                             keyboardType: TextInputType.number,
-                            enabled: _sheetService != null ? !_sheetService.isLabuPlayed() : false,
+                            enabled: _sheetService != null ? !_sheetService.isElePlayed() : false,
                             decoration: InputDecoration(
                               labelText: "Answer Two",
                               labelStyle: appData.getMainTextStyle(),
@@ -297,7 +297,7 @@ class _LabuGameViewState extends State<LabuGameView> {
                             controller: threeController,
                             cursorColor: appData.mainTextColor,
                             keyboardType: TextInputType.number,
-                            enabled: _sheetService != null ? !_sheetService.isLabuPlayed() : false,
+                            enabled: _sheetService != null ? !_sheetService.isElePlayed() : false,
                             decoration: InputDecoration(
                               labelText: "Answer Three",
                               labelStyle: appData.getMainTextStyle(),
@@ -344,12 +344,12 @@ class _LabuGameViewState extends State<LabuGameView> {
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () async {
-                              if (_sheetService.isLabuPlayed()) {
+                              if (_sheetService.isElePlayed()) {
                                 await showAlert("Tn oekgu;a fuu ;rÕhg iynd.S ù we;", "oekqï§uhs");
                                 Navigator.pop(context);
                               } else {
                                 if (oneController.text.length >= 1 && twoController.text.length >= 1 && threeController.text.length >= 1) {
-                                  await _sheetService.setLabuValue("[" + oneController.text + "," +  twoController.text + "," + threeController.text + "]");
+                                  await _sheetService.setEleValue("[" + oneController.text + "," +  twoController.text + "," + threeController.text + "]");
                                 } else {
                                   showAlert("lreKdlr ms,s;=re ;=ku we;=,;a lrkak", "oekqï§uhs");
                                 }

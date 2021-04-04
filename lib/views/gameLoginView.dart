@@ -133,147 +133,103 @@ class _GameLogInViewState extends State<GameLogInView> {
             currentFocus.unfocus();
           }
         },
-        child: Stack(
-          children: [
-            Positioned(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: devHeight,
-                decoration: BoxDecoration(
-                  color: appData.mainBgColor,
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Positioned(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: devHeight,
+                  decoration: BoxDecoration(
+                    color: appData.mainBgColor,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              width: devWidth,
-              height: devHeight,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      width: devWidth,
-                      padding: EdgeInsets.only(
-                        top: 20,
-                        bottom: 10
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          KFText(
-                            text: "E9PAY ",
-                            bold: true,
-                            size: 0.06,
-                          ),
-                          KFText(
-                            text: "wjqreÿ l%Svd",
-                            bold: true,
-                            size: 0.06,
-                            si: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: devWidth,
-                      padding: EdgeInsets.only(
-                        bottom: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          KFText(
-                            text: "Online ",
-                            bold: true,
-                            size: 0.04,
-                          ),
-                          KFText(
-                            text: "wjqreÿ W;aijh",
-                            bold: true,
-                            size: 0.04,
-                            si: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      padding: EdgeInsets.all(20),
-                      width: devWidth,
-                      decoration: BoxDecoration(
-                        gradient: appData.linearGradientBt,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
-                      ),
-                      child: Column(
-                        children: [
-                          KFText(
-                            text: ";rÕhg msúiSug Tnf.a ku yd ÿrl:k wxlh ,ndfokak",
-                            bold: true,
-                            size: 0.04,
-                            si: true,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: TextField(
-                              controller: nameController,
-                              cursorColor: appData.mainTextColor,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: "Name",
-                                labelStyle: appData.getMainTextStyle(),
-                                hintText: "Enter Name Here",
-                                hintStyle: TextStyle(
-                                  color: appData.mainTextColor.withOpacity(0.5),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: BorderSide(color: appData.mainTextColor)
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: BorderSide(
-                                    color: appData.mainTextColor,
-                                    width: 2.0
-                                  )
-                                ),
-                                focusColor: appData.mainTextColor,
-                                icon: FaIcon(FontAwesomeIcons.userAlt, color: appData.mainTextColor, size: devWidth * 0.06,),
-                              ),
+              Positioned(
+                width: devWidth,
+                height: devHeight,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: devWidth,
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          bottom: 10
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            KFText(
+                              text: "E9PAY ",
+                              bold: true,
+                              size: 0.06,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: RawKeyboardListener(
-                              focusNode: FocusNode(),
-                              onKey: (RawKeyEvent event){
-                                if(event.character != null && event.character == "Backspace") {
-                                  setState(() {
-                                    isBackPressed = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    isBackPressed = false;
-                                  });
-                                }
-                              },
+                            KFText(
+                              text: "wjqreÿ l%Svd",
+                              bold: true,
+                              size: 0.06,
+                              si: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: devWidth,
+                        padding: EdgeInsets.only(
+                          bottom: 10,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            KFText(
+                              text: "Online ",
+                              bold: true,
+                              size: 0.04,
+                            ),
+                            KFText(
+                              text: "wjqreÿ W;aijh",
+                              bold: true,
+                              size: 0.04,
+                              si: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        padding: EdgeInsets.all(20),
+                        width: devWidth,
+                        decoration: BoxDecoration(
+                          gradient: appData.linearGradientBt,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                        ),
+                        child: Column(
+                          children: [
+                            KFText(
+                              text: ";rÕhg msúiSug Tnf.a ku yd ÿrl:k wxlh ,ndfokak",
+                              bold: true,
+                              size: 0.04,
+                              si: true,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
                               child: TextField(
-                                controller: phoneController,
+                                controller: nameController,
                                 cursorColor: appData.mainTextColor,
-                                keyboardType: TextInputType.number,
+                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
-                                  labelText: "Phone Number",
+                                  labelText: "Name",
                                   labelStyle: appData.getMainTextStyle(),
-                                  hintText: "Enter Phone Number Here",
+                                  hintText: "Enter Name Here",
                                   hintStyle: TextStyle(
                                     color: appData.mainTextColor.withOpacity(0.5),
                                   ),
@@ -289,162 +245,208 @@ class _GameLogInViewState extends State<GameLogInView> {
                                     )
                                   ),
                                   focusColor: appData.mainTextColor,
-                                  icon: FaIcon(FontAwesomeIcons.phone, color: appData.mainTextColor, size: devWidth * 0.06,),
+                                  icon: FaIcon(FontAwesomeIcons.userAlt, color: appData.mainTextColor, size: devWidth * 0.06,),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              gradient: appData.linearGradientBt,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(30),
-                                bottomRight: Radius.circular(30),
-                                topLeft: Radius.circular(30),
-                              ),
-                              boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                            SizedBox(
+                              height: 10,
                             ),
-                            child: Material(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(30),
-                                bottomRight: Radius.circular(30),
-                                topLeft: Radius.circular(30),
-                              ),
-                              color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () async {
-                                  if (nameValidate()) {
-                                    if (phoneValidate()) {
-                                      await _sheetService.loginOrRegister(nameController.text, phoneController.text);
-                                    } else {
-                                      showAlert(errorMsg, "oekqï§uhs");
-                                    }
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: RawKeyboardListener(
+                                focusNode: FocusNode(),
+                                onKey: (RawKeyEvent event){
+                                  if(event.character != null && event.character == "Backspace") {
+                                    setState(() {
+                                      isBackPressed = true;
+                                    });
                                   } else {
-                                    showAlert(errorMsg, "oekqï§uhs");
+                                    setState(() {
+                                      isBackPressed = false;
+                                    });
                                   }
                                 },
+                                child: TextField(
+                                  controller: phoneController,
+                                  cursorColor: appData.mainTextColor,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    labelText: "Phone Number",
+                                    labelStyle: appData.getMainTextStyle(),
+                                    hintText: "Enter Phone Number Here",
+                                    hintStyle: TextStyle(
+                                      color: appData.mainTextColor.withOpacity(0.5),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      borderSide: BorderSide(color: appData.mainTextColor)
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      borderSide: BorderSide(
+                                        color: appData.mainTextColor,
+                                        width: 2.0
+                                      )
+                                    ),
+                                    focusColor: appData.mainTextColor,
+                                    icon: FaIcon(FontAwesomeIcons.phone, color: appData.mainTextColor, size: devWidth * 0.06,),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: appData.linearGradientBt,
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(30),
                                   bottomRight: Radius.circular(30),
                                   topLeft: Radius.circular(30),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                                  child: Column(
-                                    children: [
-                                      KFText(
-                                        text: "we;=¿jkak",
-                                        bold: true,
-                                        size: 0.05,
-                                        si: true,
-                                      ),
-                                    ],
-                                  )
+                                boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                              ),
+                              child: Material(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30),
+                                  topLeft: Radius.circular(30),
+                                ),
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: () async {
+                                    if (nameValidate()) {
+                                      if (phoneValidate()) {
+                                        await _sheetService.loginOrRegister(nameController.text, phoneController.text);
+                                      } else {
+                                        showAlert(errorMsg, "oekqï§uhs");
+                                      }
+                                    } else {
+                                      showAlert(errorMsg, "oekqï§uhs");
+                                    }
+                                  },
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(30),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                                    child: Column(
+                                      children: [
+                                        KFText(
+                                          text: "we;=¿jkak",
+                                          bold: true,
+                                          size: 0.05,
+                                          si: true,
+                                        ),
+                                      ],
+                                    )
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              KFText(
-                                text: ";rÕhg iyNd.S ùfï§",
-                                bold: true,
-                                size: 0.04,
-                                si: true,
-                              ),
-                              KFText(
-                                text: " E9PAY ",
-                                bold: true,
-                                size: 0.04,
-                              ),
-                            ],
-                          ),
-                          KFText(
-                            text: ",shdmÈxÑ; ÿrl:k wxlh ,ndÈh hq;= jk w;r",
-                            bold: true,
-                            size: 0.04,
-                            si: true,
-                          ),
-                          KFText(
-                            text: "ÿrl:k wxlh fjkia ùul§ ;rÕ jdrh wfydais jkq we;'",
-                            bold: true,
-                            size: 0.04,
-                            si: true,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                KFText(
+                                  text: ";rÕhg iyNd.S ùfï§",
+                                  bold: true,
+                                  size: 0.04,
+                                  si: true,
+                                ),
+                                KFText(
+                                  text: " E9PAY ",
+                                  bold: true,
+                                  size: 0.04,
+                                ),
+                              ],
                             ),
-                            child: Image.asset("assets/slLogo.png", fit: BoxFit.contain, scale: devWidth * 0.016,)
-                          ),
-                          KFText(
-                            text: "E9pay Remittance Sri Lanka",
-                            bold: true,
-                            size: 0.03,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(FontAwesomeIcons.phoneSquare, color: appData.mainTextColor, size: devWidth * 0.03,),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              KFText(
-                                text: "1899-6943",
-                                bold: true,
-                                size: 0.03,
-                              ),
-                            ],
-                          ),
-                        ],
+                            KFText(
+                              text: ",shdmÈxÑ; ÿrl:k wxlh ,ndÈh hq;= jk w;r",
+                              bold: true,
+                              size: 0.04,
+                              si: true,
+                            ),
+                            KFText(
+                              text: "ÿrl:k wxlh fjkia ùul§ ;rÕ jdrh wfydais jkq we;'",
+                              bold: true,
+                              size: 0.04,
+                              si: true,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              width: devWidth,
-              height: devHeight,
-              child: _sheetService.getLoading() ? Container(
-                width: devWidth,
-                height: devHeight,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.4),
-                ),
-                child: Center(
-                  child: Lottie.asset(
-                    "assets/loading.json",
-                    fit: BoxFit.fitWidth,
-                    animate: _sheetService.getLoading(),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                              ),
+                              child: Image.asset("assets/slLogo.png", fit: BoxFit.contain, scale: devWidth * 0.016,)
+                            ),
+                            KFText(
+                              text: "E9pay Remittance Sri Lanka",
+                              bold: true,
+                              size: 0.03,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FaIcon(FontAwesomeIcons.phoneSquare, color: appData.mainTextColor, size: devWidth * 0.03,),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                KFText(
+                                  text: "1899-6943",
+                                  bold: true,
+                                  size: 0.03,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ) : Container(),
-            ),
-          ],
+              ),
+              Positioned(
+                width: devWidth,
+                height: devHeight,
+                child: _sheetService.getLoading() ? Container(
+                  width: devWidth,
+                  height: devHeight,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.4),
+                  ),
+                  child: Center(
+                    child: Lottie.asset(
+                      "assets/loading.json",
+                      fit: BoxFit.fitWidth,
+                      animate: _sheetService.getLoading(),
+                    ),
+                  ),
+                ) : Container(),
+              ),
+            ],
+          ),
         ),
       ),
     );

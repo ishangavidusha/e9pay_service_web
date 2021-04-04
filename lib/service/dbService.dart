@@ -165,8 +165,17 @@ class SheetService with ChangeNotifier {
     return _userData.eleGame;
   }
 
+  List<String> getEleValue() {
+    String value = _userData.eleStatus.replaceAll("[", "").replaceAll("]", "");
+    if (value.split(",").length == 3) {
+      return value.split(",");
+    }
+    return null;
+  }
+
   Future<bool> setEleValue(String value) async {
     _userData.eleStatus = value;
+    _userData.eleGame = true;
     bool result = await updateUser();
     notifyListeners();
     return result;
@@ -209,9 +218,6 @@ class SheetService with ChangeNotifier {
       }
 
       if (found != -1) {
-
-        print(found);
-        print(data.length);
 
         bool result = await worksheet.values.insertRow(found + 2, [
           _userData.id,

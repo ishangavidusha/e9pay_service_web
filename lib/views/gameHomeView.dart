@@ -1,4 +1,5 @@
 import 'package:e9pay_service/service/dbService.dart';
+import 'package:e9pay_service/views/games/eleGame.dart';
 import 'package:e9pay_service/views/games/labuGame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -222,7 +223,10 @@ class _GameHomeViewState extends State<GameHomeView> {
                             mouseCursor: SystemMouseCursors.click,
                             dense: true,
                             onTap: () {
-                              //TODO: GO TO GAME
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => EleGameView()),
+                              );
                             },
                           ),
                         ),
