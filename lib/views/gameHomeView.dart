@@ -385,7 +385,8 @@ class _GameHomeViewState extends State<GameHomeView> {
                                       if (await canLaunch(fallbackUrl)) {
                                         bool result = await _sheetService.setFBShare(_sheetService.getFBShare() + 1);
                                         if (result) {
-                                          await launch(fallbackUrl);
+                                          await launch(fallbackUrl, );
+                                          await launch(fallbackUrl, forceSafariVC: false);
                                         }
                                       } else {
                                         showAlert("ndú;fha .eg¿jla we;s úh'", "oekqï§uhs");
