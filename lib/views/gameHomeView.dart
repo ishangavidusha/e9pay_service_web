@@ -380,17 +380,17 @@ class _GameHomeViewState extends State<GameHomeView> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () async {
-                                      // String fbProtocolUrl = "fb://page/E9pay.lk";
+                                      String fbProtocolUrl = "fb://page/210844679504729";
                                       String fallbackUrl = "https://www.facebook.com/E9pay.lk";
-                                      if (await canLaunch(fallbackUrl)) {
-                                        bool result = await _sheetService.setFBShare(_sheetService.getFBShare() + 1);
-                                        if (result) {
-                                          await launch(fallbackUrl, );
-                                          await launch(fallbackUrl, forceSafariVC: false);
+                                      try {
+                                        bool launched = await launch(fbProtocolUrl, forceSafariVC: false, forceWebView: false);
+                                        if (!launched) {
+                                          await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
                                         }
-                                      } else {
-                                        showAlert("ndú;fha .eg¿jla we;s úh'", "oekqï§uhs");
+                                      } catch (e) {
+                                        await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
                                       }
+                                      // showAlert("ndú;fha .eg¿jla we;s úh'", "oekqï§uhs");
                                     },
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(30),
