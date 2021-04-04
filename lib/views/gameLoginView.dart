@@ -216,7 +216,7 @@ class _GameLogInViewState extends State<GameLogInView> {
                         ),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
