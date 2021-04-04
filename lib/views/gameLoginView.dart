@@ -38,7 +38,7 @@ class _GameLogInViewState extends State<GameLogInView> {
   void checkBrowser() async {
     webBrowserInfo = await deviceInfo.webBrowserInfo;
     print('Running on ${webBrowserInfo.platform}'); 
-    if (webBrowserInfo.platform.contains("Win32") || webBrowserInfo.platform.contains("Mac")) {
+    if (webBrowserInfo.platform.contains("Win") || webBrowserInfo.platform.contains("Mac")) {
       setState(() {
         mobile = false;
       });
