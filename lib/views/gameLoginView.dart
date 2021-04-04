@@ -1,6 +1,8 @@
 import 'package:e9pay_service/service/dbService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -61,13 +63,17 @@ class _GameLogInViewState extends State<GameLogInView> {
   _phoneListener() {
     if (!isBackPressed) {
       if (phoneController.text.length == 3 || phoneController.text.length == 8) {
-        phoneController.text = phoneController.text + "-";
-        phoneController.selection = TextSelection.fromPosition(TextPosition(offset: phoneController.text.length));
+        phoneController.value = TextEditingValue(
+          text: phoneController.text + "-",
+          selection: TextSelection.collapsed(offset: phoneController.text.length + 1),
+        );
       }
 
       if (phoneController.text.length > 13) {
-        phoneController.text = phoneController.text.substring(0, 13);
-        phoneController.selection = TextSelection.fromPosition(TextPosition(offset: phoneController.text.length));
+        phoneController.value = TextEditingValue(
+          text: phoneController.text.substring(0, 13),
+          selection: TextSelection.collapsed(offset: phoneController.text.length),
+        );
       }
     }
   }
@@ -163,12 +169,12 @@ class _GameLogInViewState extends State<GameLogInView> {
                           KFText(
                             text: "E9PAY ",
                             bold: true,
-                            size: 0.05,
+                            size: 0.06,
                           ),
                           KFText(
                             text: "wjqreÿ l%Svd",
                             bold: true,
-                            size: 0.05,
+                            size: 0.06,
                             si: true,
                           ),
                         ],
@@ -185,12 +191,12 @@ class _GameLogInViewState extends State<GameLogInView> {
                           KFText(
                             text: "Online ",
                             bold: true,
-                            size: 0.03,
+                            size: 0.04,
                           ),
                           KFText(
                             text: "wjqreÿ W;aijh",
                             bold: true,
-                            size: 0.03,
+                            size: 0.04,
                             si: true,
                           ),
                         ],
@@ -213,8 +219,9 @@ class _GameLogInViewState extends State<GameLogInView> {
                           KFText(
                             text: ";rÕhg msúiSug Tnf.a ku yd ÿrl:k wxlh ,ndfokak",
                             bold: true,
-                            size: 0.03,
+                            size: 0.04,
                             si: true,
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(
                             height: 20,
@@ -243,7 +250,8 @@ class _GameLogInViewState extends State<GameLogInView> {
                                     width: 2.0
                                   )
                                 ),
-                                focusColor: appData.mainTextColor
+                                focusColor: appData.mainTextColor,
+                                icon: FaIcon(FontAwesomeIcons.userAlt, color: appData.mainTextColor, size: devWidth * 0.06,),
                               ),
                             ),
                           ),
@@ -287,7 +295,8 @@ class _GameLogInViewState extends State<GameLogInView> {
                                       width: 2.0
                                     )
                                   ),
-                                  focusColor: appData.mainTextColor
+                                  focusColor: appData.mainTextColor,
+                                  icon: FaIcon(FontAwesomeIcons.phone, color: appData.mainTextColor, size: devWidth * 0.06,),
                                 ),
                               ),
                             ),
@@ -336,7 +345,7 @@ class _GameLogInViewState extends State<GameLogInView> {
                                       KFText(
                                         text: "we;=¿jkak",
                                         bold: true,
-                                        size: 0.04,
+                                        size: 0.05,
                                         si: true,
                                       ),
                                     ],
@@ -352,6 +361,7 @@ class _GameLogInViewState extends State<GameLogInView> {
                       height: 20,
                     ),
                     Container(
+                      padding: EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Row(
@@ -360,27 +370,61 @@ class _GameLogInViewState extends State<GameLogInView> {
                               KFText(
                                 text: ";rÕhg iyNd.S ùfï§",
                                 bold: true,
-                                size: 0.03,
+                                size: 0.04,
                                 si: true,
                               ),
                               KFText(
                                 text: " E9PAY ",
                                 bold: true,
-                                size: 0.03,
+                                size: 0.04,
                               ),
                             ],
                           ),
                           KFText(
                             text: ",shdmÈxÑ; ÿrl:k wxlh ,ndÈh hq;= jk w;r",
                             bold: true,
-                            size: 0.03,
+                            size: 0.04,
                             si: true,
                           ),
                           KFText(
                             text: "ÿrl:k wxlh fjkia ùul§ ;rÕ jdrh wfydais jkq we;'",
                             bold: true,
-                            size: 0.03,
+                            size: 0.04,
                             si: true,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                            ),
+                            child: Image.asset("assets/slLogo.png", fit: BoxFit.contain, scale: devWidth * 0.016,)
+                          ),
+                          KFText(
+                            text: "E9pay Remittance Sri Lanka",
+                            bold: true,
+                            size: 0.03,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(FontAwesomeIcons.phoneSquare, color: appData.mainTextColor, size: devWidth * 0.03,),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              KFText(
+                                text: "1899-6943",
+                                bold: true,
+                                size: 0.03,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -388,6 +432,24 @@ class _GameLogInViewState extends State<GameLogInView> {
                   ],
                 ),
               ),
+            ),
+            Positioned(
+              width: devWidth,
+              height: devHeight,
+              child: _sheetService.getLoading() ? Container(
+                width: devWidth,
+                height: devHeight,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.4),
+                ),
+                child: Center(
+                  child: Lottie.asset(
+                    "assets/loading.json",
+                    fit: BoxFit.fitWidth,
+                    animate: _sheetService.getLoading(),
+                  ),
+                ),
+              ) : Container(),
             ),
           ],
         ),

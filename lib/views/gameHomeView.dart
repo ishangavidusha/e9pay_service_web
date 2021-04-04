@@ -2,6 +2,7 @@ import 'package:e9pay_service/service/dbService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../service/textProvider.dart';
@@ -53,12 +54,12 @@ class _GameHomeViewState extends State<GameHomeView> {
                         KFText(
                           text: "E9PAY ",
                           bold: true,
-                          size: 0.05,
+                          size: 0.06,
                         ),
                         KFText(
                           text: "wjqreÿ l%Svd",
                           bold: true,
-                          size: 0.05,
+                          size: 0.06,
                           si: true,
                         ),
                       ],
@@ -75,12 +76,12 @@ class _GameHomeViewState extends State<GameHomeView> {
                         KFText(
                           text: "Online ",
                           bold: true,
-                          size: 0.03,
+                          size: 0.04,
                         ),
                         KFText(
                           text: "wjqreÿ W;aijh",
                           bold: true,
-                          size: 0.03,
+                          size: 0.04,
                           si: true,
                         ),
                       ],
@@ -99,17 +100,17 @@ class _GameHomeViewState extends State<GameHomeView> {
                             boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
                           ),
                           child: ListTile(
-                            leading: FaIcon(FontAwesomeIcons.dice, color: appData.mainTextColor, size: devWidth > 1200 ? 50 : devWidth * 0.04,),
+                            leading: FaIcon(FontAwesomeIcons.dice, color: appData.mainTextColor, size: devWidth * 0.06,),
                             title: KFText(
                               text: "leg .eiSu",
                               bold: true,
-                              size: 0.04,
+                              size: 0.05,
                               si: true,
                             ),
                             subtitle: KFText(
                               text: "tla whl=g tlajrla muKla iynd.S úh yelshs",
                               bold: true,
-                              size: 0.02,
+                              size: 0.03,
                               si: true,
                             ),
                             mouseCursor: SystemMouseCursors.click,
@@ -125,17 +126,17 @@ class _GameHomeViewState extends State<GameHomeView> {
                             boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
                           ),
                           child: ListTile(
-                            leading: FaIcon(FontAwesomeIcons.bomb, color: appData.mainTextColor, size: devWidth > 1200 ? 50 : devWidth * 0.04,),
+                            leading: FaIcon(FontAwesomeIcons.bomb, color: appData.mainTextColor, size: devWidth * 0.06,),
                             title: KFText(
                               text: "lKd uqÜáh ì£u",
                               bold: true,
-                              size: 0.04,
+                              size: 0.05,
                               si: true,
                             ),
                             subtitle: KFText(
                               text: "tla whl=g tlajrla muKla iynd.S úh yelshs",
                               bold: true,
-                              size: 0.02,
+                              size: 0.03,
                               si: true,
                             ),
                             mouseCursor: SystemMouseCursors.click,
@@ -151,17 +152,17 @@ class _GameHomeViewState extends State<GameHomeView> {
                             boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
                           ),
                           child: ListTile(
-                            leading: FaIcon(FontAwesomeIcons.eye, color: appData.mainTextColor, size: devWidth > 1200 ? 50 : devWidth * 0.04,),
+                            leading: FaIcon(FontAwesomeIcons.eye, color: appData.mainTextColor, size: devWidth * 0.06,),
                             title: KFText(
                               text: "w,shg wei ;eîu",
                               bold: true,
-                              size: 0.04,
+                              size: 0.05,
                               si: true,
                             ),
                             subtitle: KFText(
                               text: "tla whl=g ;=kajrla iynd.Súh yel",
                               bold: true,
-                              size: 0.02,
+                              size: 0.03,
                               si: true,
                             ),
                             mouseCursor: SystemMouseCursors.click,
@@ -177,17 +178,17 @@ class _GameHomeViewState extends State<GameHomeView> {
                             boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
                           ),
                           child: ListTile(
-                            leading: FaIcon(FontAwesomeIcons.lemon, color: appData.mainTextColor, size: devWidth > 1200 ? 50 : devWidth * 0.04,),
+                            leading: FaIcon(FontAwesomeIcons.lemon, color: appData.mainTextColor, size: devWidth * 0.06,),
                             title: KFText(
                               text: ".ia,nq f.äfha weg .kka lsÍu",
                               bold: true,
-                              size: 0.04,
+                              size: 0.05,
                               si: true,
                             ),
                             subtitle: KFText(
                               text: "tla whl=g ;=kajrla iynd.Súh yel",
                               bold: true,
-                              size: 0.02,
+                              size: 0.03,
                               si: true,
                             ),
                             mouseCursor: SystemMouseCursors.click,
@@ -216,7 +217,7 @@ class _GameHomeViewState extends State<GameHomeView> {
                                   KFText(
                                     text: ";rÕlre",
                                     bold: true,
-                                    size: 0.04,
+                                    size: 0.05,
                                     si: true,
                                   ),
                                 ],
@@ -231,13 +232,13 @@ class _GameHomeViewState extends State<GameHomeView> {
                                   KFText(
                                     text: "ku( ",
                                     bold: true,
-                                    size: 0.03,
+                                    size: 0.04,
                                     si: true,
                                   ),
                                   KFText(
                                     text: _sheetService.getName(),
                                     bold: true,
-                                    size: 0.03,
+                                    size: 0.04,
                                   ),
                                 ],
                               ),
@@ -248,13 +249,13 @@ class _GameHomeViewState extends State<GameHomeView> {
                                   KFText(
                                     text: "ÿrl:k wxlh( ",
                                     bold: true,
-                                    size: 0.03,
+                                    size: 0.04,
                                     si: true,
                                   ),
                                   KFText(
                                     text: _sheetService.getPhone(),
                                     bold: true,
-                                    size: 0.03,
+                                    size: 0.04,
                                   ),
                                 ],
                               ),
@@ -264,34 +265,63 @@ class _GameHomeViewState extends State<GameHomeView> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
+                          ),
+                          child: Image.asset("assets/slLogo.png", fit: BoxFit.contain, scale: devWidth * 0.016,)
+                        ),
+                        KFText(
+                          text: "E9pay Remittance Sri Lanka",
+                          bold: true,
+                          size: 0.03,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FaIcon(FontAwesomeIcons.phoneSquare, color: appData.mainTextColor, size: devWidth * 0.03,),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            KFText(
+                              text: "1899-6943",
+                              bold: true,
+                              size: 0.03,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
           Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: EdgeInsets.only(
-                left: 40,
-                bottom: 20,
-                right: 40,
-              ),
+            width: devWidth,
+            height: devHeight,
+            child: _sheetService.getLoading() ? Container(
               width: devWidth,
-              height: 150,
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: appData.getBoxShadow(appData.linearGradientBt.colors.first),
-                    ),
-                    child: Image.asset("assets/slLogo.png", fit: BoxFit.contain,)
-                  ),
-                ],
+              height: devHeight,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.4),
               ),
-            ),
+              child: Center(
+                child: Lottie.asset(
+                  "assets/loading.json",
+                  fit: BoxFit.fitWidth,
+                  animate: _sheetService.getLoading(),
+                ),
+              ),
+            ) : Container(),
           ),
         ],
       ),

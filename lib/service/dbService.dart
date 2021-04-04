@@ -30,10 +30,12 @@ class SheetService with ChangeNotifier {
     name: "",
     phoneNumber: "",
   );
+  bool _loading = false;
 
   Future<bool> loginOrRegister(String name, String phoneNumber) async {
 
     try {
+      setLoading(true);
       spreadsheet = await gsheets.spreadsheet(sheetId);
       Worksheet worksheet = spreadsheet.worksheetByIndex(0);
       List data = await worksheet.values.allRows();
@@ -67,7 +69,7 @@ class SheetService with ChangeNotifier {
         notifyListeners();
       } else {
 
-        String newId = DateTime.now().toString();
+        String newId = DateTime.now().microsecondsSinceEpoch.toString();
 
         bool registerResult = await worksheet.values.appendRow([newId, name, phoneNumber, "false", "false", 0, "false", "false", 0, "false", "null", "false", "null"]);
 
@@ -92,14 +94,24 @@ class SheetService with ChangeNotifier {
 
         notifyListeners();
       }
-
+      setLoading(false);
       return true;
 
     } catch (e) {
       print(e);
+      setLoading(false);
       return false;
     }
 
+  }
+
+  void setLoading(bool value) {
+    _loading = value;
+    notifyListeners();
+  }
+
+  bool getLoading() {
+    return _loading;
   }
 
   String getName() {
@@ -118,6 +130,105 @@ class SheetService with ChangeNotifier {
     }
   }
 
+  bool isDicePlayed() {
+    return _userData.diceGame;
+  }
+
+  bool isDiceWin() {
+    return _userData.diceStatus;
+  }
+
+  Future<bool> setDiceValue(int value) async {
+    _userData.diceValue = value;
+    bool result = await updateUser();
+    notifyListeners();
+    return result;
+  }
+
+  bool isPotPlayed() {
+    return _userData.potGame;
+  }
+
+  bool isPotWin() {
+    return _userData.potStatus;
+  }
+
+  Future<bool> setPotValue(int value) async {
+    _userData.potValue = value;
+    bool result = await updateUser();
+    notifyListeners();
+    return result;
+  }
+
+  bool isElePlayed() {
+    return _userData.eleGame;
+  }
+
+  Future<bool> setEleValue(String value) async {
+    _userData.eleStatus = value;
+    bool result = await updateUser();
+    notifyListeners();
+    return result;
+  }
+
+  bool isLabuPlayed() {
+    return _userData.labuGame;
+  }
+
+  Future<bool> setLabuValue(String value) async {
+    _userData.labuStatus = value;
+    bool result = await updateUser();
+    notifyListeners();
+    return result;
+  }
+
+  Future<bool> updateUser() async {
+    try {
+      setLoading(true);
+      spreadsheet = await gsheets.spreadsheet(sheetId);
+      Worksheet worksheet = spreadsheet.worksheetByIndex(0);
+      List data = await worksheet.values.allRows();
+
+      data.removeAt(0);
+      int found = 0;
+
+      if (data.isNotEmpty) {
+        found = data.indexWhere((element) => element[0].toString().compareTo(_userData.id) == 0);
+      } else {
+        found = -1;
+      }
+
+      if (found != -1) {
+
+        bool result = await worksheet.values.insertRow(found + 1, [
+          _userData.id,
+          _userData.name,
+          _userData.phoneNumber,
+          _userData.diceGame.toString(),
+          _userData.diceStatus.toString(),
+          _userData.diceValue.toString(),
+          _userData.potGame.toString(),
+          _userData.potStatus.toString(),
+          _userData.potValue.toString(),
+          _userData.eleGame.toString(),
+          _userData.eleStatus,
+          _userData.labuGame.toString(),
+          _userData.labuStatus,
+        ]);
+
+        setLoading(false);
+        return result;
+
+      } else {
+        setLoading(false);
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      setLoading(false);
+      return false;
+    }
+  }
 
 
 }
