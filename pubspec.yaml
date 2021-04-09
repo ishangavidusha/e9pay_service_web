@@ -37,9 +37,6 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   carousel_slider: ^3.0.0
   gsheets: ^0.2.7
-  rflutter_alert: ^2.0.2
-  url_launcher: ^6.0.3
-  device_info_plus: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -72,13 +69,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: FmMalithi
-      fonts:
-        - asset: assets/fonts/FM_MALIT.TTF
-    - family: FMBindumathi
-      fonts:
-        - asset: assets/fonts/FM_Bindumathi.TTF
+  # fonts:
+  #   - family: FmMalithi
+  #     fonts:
+  #       - asset: assets/fonts/FM_MALIT.TTF
+  #   - family: FMBindumathi
+  #     fonts:
+  #       - asset: assets/fonts/FM_Bindumathi.TTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
